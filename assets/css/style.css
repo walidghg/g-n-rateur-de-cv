@@ -1,0 +1,71 @@
+/* FIX SCROLL */
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.container-fluid, .row {
+    height: 100%;
+}
+
+#form-section {
+    height: 100vh !important;
+    padding-bottom: 150px;
+}
+
+#preview-section {
+    height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 50px;
+    background-color: #5d6d7e;
+}
+
+/* DESIGN */
+:root {
+    --primary-color: #2c3e50;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f0f2f5;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.cv-paper {
+    background: white;
+    width: 210mm;
+    min-height: 297mm;
+    padding: 40px;
+    margin: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.cv-paper h1 {
+    color: var(--primary-color);
+    border-bottom: 3px solid #3498db;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.cv-paper h5 {
+    color: var(--primary-color);
+    text-transform: uppercase;
+    margin-top: 25px;
+    border-color: var(--primary-color) !important;
+}
+
+.form-control, .form-select {
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
