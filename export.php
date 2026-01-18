@@ -5,7 +5,8 @@ use Dompdf\Options;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $couleur = htmlspecialchars($_POST['couleur'] ?? '#2c3e50');
+    $couleur = '#2c3e50'; 
+
     $prenom = htmlspecialchars($_POST['prenom'] ?? '');
     $nom = htmlspecialchars($_POST['nom'] ?? '');
     $titre = htmlspecialchars($_POST['titre'] ?? '');
@@ -18,11 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $formations = $_POST['formations'] ?? [];
     $competences = $_POST['competences'] ?? [];
 
-    // Gestion Photo (Base64)
     $photo_base64 = null;
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
         $tmp_name = $_FILES['photo']['tmp_name'];
-        $type = pathinfo($tmp_name, PATHINFO_EXTENSION);
+        $type = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
         $data = file_get_contents($tmp_name);
         $photo_base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
     }
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dompdf->setPaper('A4', 'portrait');
     $dompdf->render();
 
-    $dompdf->stream("mon_cv.pdf", ["Attachment" => true]);
+    $dompdf->stream("mon_cv_pro.pdf", ["Attachment" => true]);
 } else {
     header("Location: index.php");
     exit;
