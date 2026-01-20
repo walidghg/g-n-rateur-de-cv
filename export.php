@@ -4,7 +4,6 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
     $couleur = '#2c3e50'; 
 
     $prenom = htmlspecialchars($_POST['prenom'] ?? '');
@@ -19,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $formations = $_POST['formations'] ?? [];
     $competences = $_POST['competences'] ?? [];
 
+    // GESTION PHOTO
     $photo_base64 = null;
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
         $tmp_name = $_FILES['photo']['tmp_name'];
