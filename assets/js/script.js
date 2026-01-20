@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     const form = document.getElementById('cv-form');
+    const errorDiv = document.getElementById('error-message');
+    
     document.getElementById('input-photo').addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
@@ -41,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>`;
             }
         });
+
         const formContainer = document.getElementById('preview-formations');
         formContainer.innerHTML = '';
         document.querySelectorAll('.formation-item').forEach(item => {
@@ -127,4 +130,29 @@ document.addEventListener('DOMContentLoaded', function() {
             updatePreview();
         }
     });
+    
+    form.addEventListener('submit', function(e) {
+        let errors = [];
+        const prenom = document.getElementById('input-prenom').value.trim();
+        const nom = document.getElementById('input-nom').value.trim();
+        const email = document.getElementById('input-email').value.trim();
+
+        if (!prenom) errors.push("Le Prénom est obligatoire.");
+        if (!nom) errors.push("Le Nom est obligatoire.");
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRegex.test(email)) {
+            errors.push("L'adresse email est invalide.");
+        }
+
+        if (errors.length > 0) {
+            e.preventDefault();
+            errorDiv.innerHTML = errors.join('<br>');
+            errorDiv.classList.remove('d-none');
+            form.scrollIntoView({behavior: "smooth"});
+        } else {
+            errorDiv.classList.add('d-none');
+        }
+    });
+
 });
